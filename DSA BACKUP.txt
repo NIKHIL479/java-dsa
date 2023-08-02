@@ -1,0 +1,1458 @@
+
+Binary Search:
+--------------
+find floor:
+------------
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+import java.util.*;
+import static java.lang.System.out;
+class HelloWorld {
+    static int[] a={1,2,3,5,9};
+    static int bs(int[] a,int t)
+    {
+        int s=0;
+        int e=a.length-1;
+        while(s<=e)
+        {
+            int m=(s+e)/2;
+            if(t>a[m])
+            {
+                 s=m+1;
+            }
+            else{
+                e=m-1;
+                
+            }
+        }
+        return e;
+    }
+    public static void main(String[] args) {
+        
+      out.println(bs(a,6));
+    }
+}
+==================================================================================================
+find ceil:
+----------
+import java.util.*;
+import static java.lang.System.out;
+class HelloWorld {
+    static int[] a={1,2,3,5,9};
+    static int bs(int[] a,int t)
+    {
+        int s=0;
+        int e=a.length-1;
+        while(s<=e)
+        {
+            int m=(s+e)/2;
+            if(t<a[m])
+            {
+                e=m-1;
+            }
+            else{
+                 s=m+1;
+            }
+            
+        }
+        return s;
+    }
+    public static void main(String[] args) {
+        
+      out.println(bs(a,6));
+    }
+}
+=================================================================================
+first and last position:
+-------------------------
+import java.util.*;
+import static java.lang.System.out;
+class HelloWorld {
+    static int[] a={5,5,6,7,7,7,7,8,9,11,12};
+    static int bs(int[] a,int t,boolean fif)
+    {
+        int ans=-1;
+        int s=0;
+        int e=a.length-1;
+        while(s<=e)
+        {
+            int m=(s+e)/2;
+            if(t<a[m])
+            {
+                e=m-1;
+            }
+            else if(t>a[m]){
+                 s=m+1;
+            }
+            else{
+                ans=m;
+                if(fif)
+                {
+                    e=m-1;
+                }
+                else{
+                    s=m+1;
+                }
+            }
+        }
+        return ans;
+    }
+    public static void main(String[] args) {
+        int[] ans={-1,-1};
+        ans[0]=bs(a,7,true);
+      ans[1]=bs(a,7,false);
+      out.println(Arrays.toString(ans));
+    }
+}
+===========================================================================================
+find element in an infinite array:
+-----------------------------------
+import static java.lang.System.out;
+class HelloWorld {
+    static int[] a={0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
+    static int bs(int[] a,int t,int s,int e)
+    {
+        while(s<=e)
+        {
+            int m=(s+e)/2;
+            if(t<a[m])
+            {
+                e=m-1;
+            }
+            else if(t>a[m])
+            {
+                s=m+1;
+            }
+            else{
+                return m;
+            }
+        }
+        return -1;
+    }
+    public static void main(String[] args) {
+      int s=0;
+      int e=1;
+      int t=4;
+      while(t>a[e])
+      {
+          int newstart=e+1;
+          e=e+(e-s+1)*2;
+          s=newstart;
+      }
+      out.println(s+"..."+e);
+      int q=bs(a,t,s,e);
+      out.println(q);
+    }
+}
+===========================================================================================
+Bubble sort:if array in ascending order
+-----------
+import java.util.*;
+import static java.lang.System.out;
+class Bs {
+    static void swap(int[] a,int i,int j)
+    {
+        int temp=a[i];
+        a[i]=a[j];
+        a[j]=temp;
+    }
+    public static void main(String[] args) {
+        int[] a={5,4,3,2,1};
+        int l=a.length;
+        boolean swapped=false;
+       for(int i=0;i<l-1;i++)
+       {
+           out.println(i);
+           for(int j=0;j<l-1-i;j++)
+           {
+               if(a[j]>a[j+1])
+               {
+                   swap(a,j,j+1);
+                   swapped=true;
+               }
+           }
+           if(!swapped)
+           {
+               break;
+           }
+       }
+       out.println(Arrays.toString(a));
+    }
+}
+========================================================
+bubble sort:
+------------
+import java.util.*;
+import static java.lang.System.out;
+class Bs {
+    static void swap(int[] a,int i,int j)
+    {
+        int temp=a[i];
+        a[i]=a[j];
+        a[j]=temp;
+    }
+    public static void main(String[] args) {
+        boolean swapped=false;
+        int[] a={5,4,3,2,1};
+        int l=a.length;
+       for(int i=0;i<l-1;i++)
+       {
+           out.println(i);
+           for(int j=1;j<l-i;j++)
+           {
+               if(a[j]<a[j-1])
+               {
+                   swap(a,j,j-1);
+                   swapped=true;
+               }
+
+           }
+        if(!swapped)
+               {
+                   break;
+               }
+       }
+       out.println(Arrays.toString(a));
+    }
+}
+========================================================
+selection sort:
+----------------
+import java.util.*;
+import static java.lang.System.out;
+class Bs {
+            static void swap(int[] a,int i,int j)
+        {
+            int temp=a[i];
+            a[i]=a[j];
+            a[j]=temp;
+        }
+    static int findmax(int[] a,int start,int last)
+    {
+        int max=start;
+        for(int i=start+1;i<=last;i++)
+        {
+            if(a[max]<a[i])
+            {
+                max=i;
+            }
+        }
+        out.println(max+".."+a[max]);
+        return max;
+    }
+    public static void main(String[] args) {
+        int[] a={11,1,1234,23};
+        int l=a.length;
+        for(int i=0;i<l;i++)
+        {
+                int last=l-i-1;
+                int max=findmax(a,0,last);
+                swap(a,max,last);
+                  out.println(Arrays.toString(a));
+        }
+       out.println(Arrays.toString(a));
+    }
+}
+=============================================================================================
+insertion sort:
+---------------
+import java.util.*;
+import static java.lang.System.out;
+class Bs {
+            static void swap(int[] a,int i,int j)
+        {
+            int temp=a[i];
+            a[i]=a[j];
+            a[j]=temp;
+        }
+
+    public static void main(String[] args) {
+        int[] a={5,4,3,2,1,0};
+        int l=a.length;
+        for(int i=0;i<l-1;i++)
+        {
+            for(int j=i+1;j>0;j--)
+            {
+                if(a[j]<a[j-1])
+                {
+                    swap(a,j,j-1);
+                }
+                else{
+                    break;
+                }
+                
+            }
+           
+        }
+       out.println(Arrays.toString(a));
+    }
+}
+=======================================================================================
+cyclic sort:
+------------
+import java.util.*;
+import static java.lang.System.out;
+class Cs {
+            static void swap(int[] a,int i,int j)
+        {
+            int temp=a[i];
+            a[i]=a[j];
+            a[j]=temp;
+        }
+
+    public static void main(String[] args) {
+        int[] a={4,3,2,1};
+        int l=a.length;
+  for(int i=0;i<l;i++)
+  {
+     while(a[i]!=a[a[i]-1])
+     {
+         swap(a,i,a[i]-1);
+     }
+  }
+   System.out.println(Arrays.toString(a)+"\n");
+
+       
+    }
+}
+============================================================================================
+sum of n numbers:
+-----------------
+/* Online Java Compiler and Editor */
+public class HelloWorld{
+    static int f(int n)
+    {
+        if(n==0)
+        {
+            return 0 ;
+        }
+       return n+f(n-1);
+    }
+     public static void main(String []args){
+         
+         System.out.println(f(5));
+       
+     }
+}
+
+/* Online Java Compiler and Editor */
+public class HelloWorld{
+    static int f(int n,int s)
+    {
+        if(n==6)
+        {
+            return s ;
+        }
+        s=s+n;
+       return f(n+1,s);
+    }
+     public static void main(String []args){
+         System.out.println(f(1,0));
+     }
+}
+
+/* Online Java Compiler and Editor */
+public class HelloWorld{
+    static void f(int n,int s)
+    {
+        if(n==6)
+        {
+            System.out.println(s);
+            return  ;
+        }
+        s=s+n;
+        f(n+1,s);
+    }
+     public static void main(String []args){
+         f(1,0);
+     }
+}
+
+=================================================================================
+reverse of array:
+-----------------
+/* Online Java Compiler and Editor */
+import java.util.*;
+public class HelloWorld{
+    static void swap(int[] a,int s,int e)
+    {
+        int temp=a[s];
+        a[s]=a[e];
+        a[e]=temp;
+    }
+            static void f(int[] a,int s,int e)
+            {
+                if(s==e || s>e)
+                {
+                    System.out.println(Arrays.toString(a));
+                    return;
+                }
+                swap(a,s,e);
+                s++;
+                e--;
+                f(a,s,e);
+            }
+     public static void main(String []args){
+         int[] a={5,4,3,2,1};
+         f(a,0,a.length-1);
+    
+     }
+}
+
+/* Online Java Compiler and Editor */
+import java.util.*;
+public class HelloWorld{
+    static void swap(int[] a,int s,int e)
+    {
+        int temp=a[s];
+        a[s]=a[e];
+        a[e]=temp;
+    }
+            static int[] f(int[] a,int s,int e)
+            {
+                if(s==e || s>e)
+                {
+                   
+                    return a;
+                }
+                swap(a,s,e);
+                s++;
+                e--;
+                return f(a,s,e);
+            }
+     public static void main(String []args){
+         int[] a={5,4,3,2,1};
+         System.out.println(Arrays.toString(f(a,0,a.length-1)));
+    
+     }
+}
+
+/* Online Java Compiler and Editor */
+import java.util.*;
+public class HelloWorld{
+    static void swap(int[] a,int s,int e)
+    {
+        int temp=a[s];
+        a[s]=a[e];
+        a[e]=temp;
+    }
+            static int[] f(int[] a,int s,int e)
+            {
+                if(s==e || s>e)
+                {
+                    return a;
+                }
+                swap(a,s,e);
+                return f(a,s+1,e-1);
+            }
+     public static void main(String []args){
+         int[] a={5,4,3,2,1};
+         System.out.println(Arrays.toString(f(a,0,a.length-1)));
+    
+     }
+}
+===============================================================================================================
+
+linerae search using recursion:
+-------------------------------
+import java.util.*;
+import static java.lang.System.out;
+
+class HelloWorld {
+    static int[] a={5,4,3,2,1};
+    static void ls(int i,int t)
+    {
+        if(i==a.length)
+        {
+            out.println("false");
+            return ;
+        }
+        if(a[i]==t)
+        {
+            out.println(i);
+            return;
+        }
+        else{
+            ls(i+1,t);
+        }
+    }
+    public static void main(String[] args) {
+        ls(0,10);
+ 
+    }
+}
+======================================================================================
+linear search using recursion:
+------------------------------
+import java.util.*;
+import static java.lang.System.out;
+
+class HelloWorld {
+    static int[] a={5,4,3,2,1};
+    static boolean ls(int i,int t)
+    {
+        if(i==a.length)
+        {
+            
+            return false;
+        }
+return a[i]==t||ls(i+1,t);
+    }
+    public static void main(String[] args) {
+        out.println(ls(0,10));
+ 
+    }
+}
+======================================================================================
+binary search using recursion:
+------------------------------
+import java.util.*;
+import static java.lang.System.out;
+
+class HelloWorld {
+    static int[] a={5,1,4,5,0,9};
+   static void bs(int r,int c)
+   {
+       if(r==0)
+       {
+           return;
+       }
+       if(c<r-1)
+       {
+  if(a[c]>a[c+1])
+  {
+      int temp=a[c];
+      a[c]=a[c+1];
+      a[c+1]=temp;
+  }
+  bs(r,c+1);
+       }
+       else{
+           
+           bs(r-1,0);
+       }
+   }
+    public static void main(String[] args) {
+        bs(5,0);
+        out.println(Arrays.toString(a));
+        
+        
+       
+    }
+}
+==========================================================================================================
+
+Subsets:
+-------
+import java.util.*;
+import static java.lang.System.out;
+
+class Subset {
+    static List<ArrayList<Integer>> subset(int[] a)
+    {
+         List<ArrayList<Integer>> outer=new ArrayList<>();
+         outer.add(new ArrayList<Integer>());
+         for(int num:a)
+         {
+             int size=outer.size();
+             for(int i=0;i<size;i++)
+             {
+                 ArrayList<Integer> al=new ArrayList<>(outer.get(i));
+                 al.add(num);
+                 outer.add(al);
+             }
+             
+         }
+        return outer;
+    }
+    public static void main(String[] args) {
+        int[] a={1,2,3};
+        List<ArrayList<Integer>> list=subset(a);
+        for(ArrayList<Integer> al:list)
+        {
+            out.println(al);
+        }
+        
+    }
+}
+=========================================================================================
+permutations:(recursion)
+--------------
+import java.util.*;
+import static java.lang.System.out;
+class Permutations {
+    static void permu(String p, String up)
+    {
+        if(up.length()==0)
+        {
+            out.println(p);
+            return;
+        }
+        char c=up.charAt(0);
+        for(int i=0;i<=p.length();i++)
+        {
+            String f=p.substring(0,i);
+            String s=p.substring(i,p.length());
+            permu(f+c+s,up.substring(1));
+        }
+    }
+    public static void main(String[] args) {
+       permu("","abc");
+    }
+}
+==============================================================================================
+permutations:(iteration)
+--------------
+import java.util.*;
+import static java.lang.System.out;
+
+class HelloWorld {
+    static List<ArrayList<String>> outer=new ArrayList<>();
+    static void permu()
+    {
+        String o="abc";
+        String e="";
+        ArrayList<String> a=new ArrayList<>();
+        a.add(e);
+        outer.add(a);
+        for(int i=0;i<o.length();i++)
+        {
+            int l=outer.size();
+            ArrayList<String> inner=outer.get(i);
+            ArrayList<String> al=new ArrayList<>();
+          for(int j=0;j<inner.size();j++)
+          {
+              String s=inner.get(j);
+              char c=o.charAt(i);
+                for(int k=0;k<=s.length();k++)
+                {
+                    String q=s.substring(0,k);
+                    String w=s.substring(k,s.length());
+                    al.add(q+c+w);
+                }
+          } 
+          outer.add(al);
+        }
+        
+    }
+    public static void main(String[] args) {
+        permu();
+        out.println(outer.get(outer.size()-1));
+    }
+}
+==================================================================================================
+Reurn ArrayList:
+---------------
+import java.util.*;
+
+class HelloWorld {
+    static ArrayList<Integer> f(int[] a,int s)
+    {
+        ArrayList<Integer> al=new ArrayList<>();
+        if(s==a.length)
+        {
+            return al;
+        }
+        if(a[s]==4)
+        {
+           al.add(s); 
+        }
+        ArrayList<Integer> up= f(a,s+1);
+        al.addAll(up);
+        return al;
+    }
+    public static void main(String[] args) {
+        int[] a={1,2,3,4,4,4};
+        System.out.println(f(a,0));
+    }
+}
+===================================================================================================
+/* Online Java Compiler and Editor */
+public class LL
+{
+        Node head;
+        Node tail;
+        int size=0;
+        class Node
+        {
+                   public Node(int value)
+        {
+                this.value=value;
+        
+        }
+        public Node(int val,Node n)
+        {
+                this.value=value;
+                this.next=n;
+        }
+        public Node()
+        {
+                
+        }
+                
+                int value;
+                Node next;
+        }
+           
+           public void insert(int val,int index)
+           {
+                   if(index==0)
+                   {
+                           insertFirst(val);
+                           return;
+                   }
+                   if(index==size)
+                   {
+                           insertLast(val);
+                           return;
+                   }
+                   Node temp=head;
+                  
+                   for(int i=1;i<index;i++)
+                  {
+                         System.out.println(temp.value+"v");
+                           temp=temp.next;
+                   }
+              
+                   Node n=new Node(val);
+                   n.next=temp.next;
+                   temp.next=n;
+                   size+=1;
+           }
+        public  void insertFirst(int n1)
+        {
+                Node n=new Node(n1);
+                n.next=head;
+                head=n;
+                size+=1;
+                if(tail==null)
+                {
+                        tail=head;
+                }
+     
+                System.out.println("node created");
+        }
+        public int deleteFirst()
+        {
+            if(head==null)
+            {
+                return -1;
+            }
+                int val=head.value;
+                 head=head.next;
+                if(head==null)
+                {
+                        tail=null;
+                }
+               
+                size--;
+                return val;
+                
+        }
+        public Node find(int value)
+        {
+            Node n=head;
+            while(n!=null)
+            {
+                if(n.value==value)
+                return n;
+            }
+            return null;
+        }
+        public void insertLast(int num)
+        {
+                if(tail==null)
+                {
+                        insertFirst(num);
+                        return ;
+                        
+                }
+                Node n=new Node(num);
+                tail.next=n;
+                tail=n;
+                size+=1;
+        }
+        
+        public void display()
+        {
+                Node temp=head;
+                while(temp!=null)
+                {
+                        System.out.print(temp.value+"-->");
+                        temp=temp.next;
+                }
+                System.out.println("END");
+        }
+        public int deleteLast()
+        {
+            
+            if(size<=1)
+            {
+                tail=null;
+                return deleteFirst();
+            }
+         Node n=get(size-2);
+         int val=tail.value;
+         tail=n;
+         tail.next=null;
+         return val;
+        }
+        public Node get(int index)
+        {
+            Node n=head;
+            for(int i=0;i<index;i++)
+            {
+                n=n.next;
+            }
+            return n;
+        }
+    public void deleteDuplicates() {
+        if(head==null)
+        {
+            return;
+        }
+        Node temp=head;
+        
+        
+        while(temp.next!=null) {
+            if(temp.value==temp.next.value) {
+                temp.next=temp.next.next;
+            } else {
+                temp=temp.next;
+            }
+        }
+    }
+           public int delete(int index)
+        {
+            if(index==0)
+            {
+                deleteFirst();
+            }
+            if(index==size-1)
+            {
+             deleteLast();   
+            }
+            Node pre=get(index-1);
+            int val=pre.next.value;
+            pre.next=pre.next.next;
+            return val;
+        }
+        public void sort()
+        {
+               bubbleSort(size-1,0); 
+        }
+        public void bubbleSort(int row,int col)
+        {
+                if(row<1)
+                {
+                        return;
+                }
+                if(col<row)
+                {
+                        Node first=get(col);
+                        Node second=get(col+1);
+                        if(first.value>second.value)
+                        {
+                                if(head==first)
+                                {
+                                     first.next=second.next;
+                                     second.next=first;
+                                     head=second;
+                                }
+                                else if(tail==second)
+                                {
+                                        Node prev=get(col-1);
+                                        prev.next=second;
+                                        first.next=null;
+                                        second.next=first;
+                                        tail=first;
+                                }
+                                else{
+                                        Node prev=get(col-1);
+                                        prev.next=second;
+                                        first.next=second.next;
+                                        second.next=first;
+                                }
+                        }
+                        bubbleSort(row,col+1);
+                }
+                
+                else{
+                        bubbleSort(row-1,0);
+                }
+        }
+            public Node middleNode(Node head) {
+        Node fast=head;
+        Node slow=head;
+        while(fast!=null && fast.next!=null)
+        {
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        return slow;
+        
+    }
+                Node t=new Node();
+    public void reverseList(Node temp) {
+        if(temp.next==null) {
+            head=temp;
+            t=temp;
+            return;
+        }
+        reverseList(temp.next);
+        t.next=temp;
+        t=t.next;
+        t.next=null;
+    }
+       
+        
+    public Node reverse(Node head) {
+        Node prev=null;
+        Node pres=head;
+        Node next=null;
+        while(pres!=null)
+        {
+            next=pres.next;
+            pres.next=prev;
+            prev=pres;
+            pres=next;
+        }
+        
+        return prev;
+    }
+        
+         public static void main(String []args){
+         LL o=new LL();
+         o.insertFirst(10);
+         o.insertFirst(11);
+         o.insertFirst(12);
+          o.insertFirst(13);
+          o.display();
+          o.sort();
+          o.display();
+          o.reverseList(o.head);
+          o.display();
+     }
+}
+
+
+=======================================================================================================================
+DOUBLY LINKED LIST:
+---------------------
+/* Online Java Compiler and Editor */
+public class DL {
+    public Node head;
+    int size;
+    public DL() {
+        this.size=0;
+    }
+    public class Node {
+        public int value;
+        public Node next;
+        public Node prev;
+        public Node(int value) {
+            this.value=value;
+        }
+    }
+    public void insertFirst(int val) {
+        Node n=new Node(val);
+        n.next=head;
+        n.prev=null;
+        if(head!=null) {
+            head.prev=n;
+        }
+        head=n;
+        size++;
+    }
+    public void display() {
+        Node temp=head;
+        Node last=null;
+        while(temp!=null) {
+            System.out.print(temp.value+"-->");
+            last=temp;
+            temp=temp.next;
+        }
+        System.out.println("END");
+        System.out.println("REVERSE ORDER");
+        while(last!=null) {
+            System.out.print(last.value+"-->");
+            last=last.prev;
+        }
+        System.out.println("START");
+    }
+    public void insertLast(int val) {
+        Node n=new Node(val);
+        Node temp=head;
+        n.next=null;
+        if(head==null) {
+            n.prev=null;
+            head=n;
+            size++;
+            return;
+        }
+        while(temp.next!=null) {
+            temp=temp.next;
+        }
+        temp.next=n;
+        n.prev=temp;
+        size++;
+    }
+    public Node find(int value) {
+        Node temp=head;
+        while(temp!=null) {
+            if(temp.value==value) {
+                return temp;
+            }
+            temp=temp.next;
+        }
+        return null;
+    }
+
+    public void insert(int after,int value) {
+        Node p=find(after);
+        Node n=new Node(value);
+        if(p==null) {
+            System.out.println("does not exist");
+            return;
+        }
+        n.next=p.next;
+        p.next=n;
+        n.prev=p;
+        if(n.next!=null) {
+            n.next.prev=n;
+        }
+        size++;
+        return;
+    }
+    public static void main(String []args) {
+        DL o=new DL();
+        o.insertFirst(10);
+        o.insertLast(11);
+        o.display();
+        o.insert(10,99);
+        o.display();
+        System.out.println(o.size);
+
+    }
+}
+======================================================================================================================================================
+CIRCULAR LINKED LIST:
+------------------------
+
+/* Online Java Compiler and Editor */
+public class CLL {
+    public Node head;
+    public Node tail;
+    int size;
+    public CLL() {
+        this.size=0;
+    }
+
+    public class Node {
+        int value;
+        Node next;
+
+        public Node(int val) {
+            this.value=val;
+        }
+    }
+    public void insert(int val) {
+        Node n=new Node(val);
+        if(head==null) {
+            head=n;
+            tail=n;
+            return;
+        }
+        tail.next=n;
+        n.next=head;
+        tail=n;
+        size++;
+        System.out.println("done");
+    }
+    public void display() {
+        Node temp=head;
+        if(head==null) {
+            System.out.println("empty cll");
+            return;
+        }
+        while(temp!=tail) {
+            System.out.print(temp.value+"-->");
+            temp=temp.next;
+        }
+        System.out.print(tail.value+"-->END");
+
+
+    }
+    public static void main(String []args) {
+        CLL o=new CLL();
+        o.insert(10);
+        o.insert(20);
+        o.insert(30);
+        o.display();
+    }
+}
+=================================================================================================================
+LINKED LIST PROBLEMS:
+------------------------
+/* Online Java Compiler and Editor */
+public class LL
+{
+        Node head;
+        Node tail;
+        int size=0;
+        class Node
+        {
+        public Node() {
+
+        }
+        public Node(int value) {
+            this.value=value;
+
+        }
+                   public Node(int value)
+        {
+                this.value=value;
+        
+        }
+        public Node(int val,Node n)
+        {
+                this.value=val;
+                this.next=n;
+        }
+                
+                int value;
+                Node next;
+        }
+           
+         /*  public void insert(int val,int index)
+           {
+                   if(index==0)
+                   {
+                           insertFirst(val);
+                           return;
+                   }
+                   if(index==size)
+                   {
+                           insertLast(val);
+                           return;
+                   }
+                   Node temp=head;
+                  
+                   for(int i=1;i<index;i++)
+                  {
+                         System.out.println(temp.value+"v");
+                           temp=temp.next;
+                   }
+              
+                   Node n=new Node(val);
+                   n.next=temp.next;
+                   temp.next=n;
+                   size+=1;
+           }*/
+           public void insertRec(int val,int index)
+           {
+                   head=insertRec(val,index,head);
+           }
+           private Node insertRec(int val,int index, Node node)
+           {
+                   if(index==0)
+                   {
+                           Node temp=new Node(val,node);
+                           System.out.println(val);
+                           size++;
+                           return temp;
+                   }
+                   System.out.println("q");
+                  node.next= insertRec(val,index-1,node.next);
+                   return node;
+           }
+
+
+
+        public  void insertFirst(int n1)
+        {
+                Node n=new Node(n1);
+                n.next=head;
+                head=n;
+                size+=1;
+                if(tail==null)
+                {
+                        tail=head;
+                }
+     
+              
+        }
+    Node t=new Node();
+    public void reverseList(Node temp) {
+        if(temp.next==null) {
+            head=temp;
+            t=temp;
+            return;
+        }
+        reverseList(temp.next);
+        t.next=temp;
+        t=t.next;
+        t.next=null;
+    }
+        
+        public void display()
+        {
+                Node temp=head;
+                while(temp!=null)
+                {
+                        System.out.print(temp.value+"-->");
+                        temp=temp.next;
+                }
+                System.out.println("END");
+        }
+
+ 
+            public static void main(String []args){
+         LL o=new LL();
+         o.insertFirst(10);
+         o.insertFirst(11);
+         o.insertFirst(12);
+          o.insertFirst(13);
+          o.display();
+          o.insertRec(90,2);
+          o.display();
+    
+  
+     }
+}
+============================================================================================================================
+
+PATTERN USING RECURSION:
+--------------------------
+/* Online Java Compiler and Editor */
+public class HelloWorld{
+
+   static void p(int r,int c)
+   {
+           if(r<1)
+           {
+                   return;
+                   
+           }
+           if(c<r)
+           {
+               System.out.print("*"+" ");
+               p(r,c+1);
+           }
+           else{
+               System.out.println();
+               p(r-1,0);
+           }
+   }
+     public static void main(String []args){
+             p(5,0);
+       
+     }
+}
+==========================================================================================================
+BUBBLE SORT USING RECURSION:
+----------------------------
+/* Online Java Compiler and Editor */
+import java.util.*;
+public class HelloWorld{
+static int[] a={3,1,2,6};
+   static void p(int r,int c)
+   {
+           if(r<1)
+           {
+               System.out.println(Arrays.toString(a));
+                   return;
+           }
+           if(c<r)
+           {
+               if(a[c]>a[c+1])
+               {
+                   int temp=a[c];
+                   a[c]=a[c+1];
+                   a[c+1]=temp;
+               }
+               p(r,c+1);
+           }
+           else{
+               p(r-1,0);
+           }
+   }
+     public static void main(String []args){
+         
+             p(a.length-1,0);
+       
+     }
+}
+
+
+TYPE-2:
+------
+/* Online Java Compiler and Editor */
+import java.util.*;
+public class HelloWorld{
+   static void p(int[] a,int r,int c)
+   {
+           if(r<1)
+           {
+               System.out.println(Arrays.toString(a));
+                   return;
+           }
+           if(c<r)
+           {
+               if(a[c]>a[c+1])
+               {
+                   int temp=a[c];
+                   a[c]=a[c+1];
+                   a[c+1]=temp;
+               }
+               p(a,r,c+1);
+           }
+           else{
+               p(a,r-1,0);
+           }
+   }
+     public static void main(String []args){
+         int[] a={5,4,3,2,1};
+             p(a,a.length-1,0);
+       
+     }
+}
+
+
+=====================================================================================================================================
+CUSTOM STACK:
+------------
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+
+class CustomStack{
+    int[] data;
+    int ptr=-1;
+   static int default_size=10;
+    public CustomStack()
+    {
+        this(default_size);
+    }
+    public CustomStack(int size)
+    {
+        this.data=new int[size];
+    }
+    public boolean isFull()
+    {
+        return ptr==data.length-1;
+    }
+    public void push(int item)
+    {
+        if(isFull())
+        {
+            System.out.println("stack is full");
+        }
+        ptr++;
+        data[ptr]=item;
+        
+    }
+    public boolean isEmpty()
+    {
+        return ptr==-1;
+    }
+    public int pop()throws Exception
+    {
+        if(isEmpty())
+        {
+            throw new Exception("stack is empty");
+        }
+        int removed=data[ptr];
+        ptr--;
+        return removed;
+    }
+    public static void main(String[] args)throws Exception {
+    CustomStack o=new CustomStack(5);
+    o.push(1);
+    System.out.println(o.pop());
+    System.out.println(o.pop());
+    }
+}
+=====================================================================================================================================================
+DynamicStack:
+-------------
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+
+ class CustomStack{
+    int[] data;
+    int ptr=-1;
+   static int default_size=10;
+    public CustomStack()
+    {
+        this(default_size);
+    }
+    public CustomStack(int size)
+    {
+        this.data=new int[size];
+    }
+    public boolean isFull()
+    {
+        return ptr==data.length-1;
+    }
+    public void push(int item)
+    {
+        if(isFull())
+        {
+            System.out.println("stack is full");
+        }
+        ptr++;
+        data[ptr]=item;
+        
+    }
+    public boolean isEmpty()
+    {
+        return ptr==-1;
+    }
+    public int pop()throws Exception
+    {
+        if(isEmpty())
+        {
+            throw new Exception("stack is empty");
+        }
+        int removed=data[ptr];
+        ptr--;
+        return removed;
+    }
+}
+
+  public class DynamicStack extends CustomStack{
+    
+        public DynamicStack()
+        {
+            super();
+        }
+        public DynamicStack(int size)
+        {
+            super(size);
+        }
+        public void push(int item)
+        {
+            if(this.isFull())
+            {
+                int[] temp=new int[data.length*2];
+                int p=0;
+                for(int q:data)
+                {
+                    temp[p]=q;
+                    p++;
+                }
+                data=temp;
+            }
+            super.push(item);
+        }
+            public static void main(String[] args)throws Exception
+            {
+                DynamicStack o=new DynamicStack(5);
+                o.push(1);
+                System.out.println(o.pop());
+                
+            }
+    
+    }
+    
+    
